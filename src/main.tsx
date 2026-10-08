@@ -377,7 +377,7 @@ function App() {
           {status === 'error' && filteredItems.length === 0 && <div className="state-message error-state"><span>{filter === 'loksewa' ? 'The Public Service Commission feed is currently unavailable.' : `We couldn’t reach the ${filter === 'ipo' ? 'Sharesansar IPO/FPO' : 'official updates'} feed.`}</span><button onClick={refreshSelectedFeed}>Try again <Icon icon={RefreshCw} size={14} /></button></div>}
           {status !== 'loading' && status !== 'error' && filteredItems.length === 0 && <div className="state-message">{query ? `No updates match “${query}”. Try another search.` : `No ${filter === 'loksewa' ? 'Loksewa notices' : filter === 'ipo' ? 'IPO/FPO news' : 'updates'} found for this filter.`}</div>}
           <div className="feed-frame-shell" style={{ minHeight: `${Math.max(frameHeight, 220)}px` }}>
-            <iframe key={filter} ref={feedFrame} className="updates-frame" title={filter === 'ipo' ? 'IPO/FPO news feed' : 'Government news feed'} src="/feed-frame.html" onLoad={sendFeedToFrame} style={{ height: `${frameHeight}px` }} />
+            <iframe ref={feedFrame} className="updates-frame" title={filter === 'ipo' ? 'IPO/FPO news feed' : 'Government news feed'} src="/feed-frame.html" onLoad={sendFeedToFrame} style={{ height: `${frameHeight}px` }} />
           </div>
           </div>
           {filteredItems.length > 0 && (filter === 'loksewa' ? hasMoreLoksewa : Boolean(nextCursor)) && <div className="load-more-wrap"><button className="load-more-button" type="button" onClick={loadMore} disabled={loadingMore}>{loadingMore ? <><Icon icon={LoaderCircle} size={16} className="spin" /> Loading…</> : <>Load More <Icon icon={ArrowDown} size={15} /></>}</button></div>}
